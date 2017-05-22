@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.pawmot.com/MtomUpload_1_0/"
+            targetNamespace="http://www.pawmot.com/MtomUpload_1_0/"
+            elementFormDefault="qualified" version="1.1">
+
+    <xsd:element name="mtomUploadRequest" type="mtomUploadRequestType" />
+    <xsd:element name="mtomUploadResponse" type="mtomUploadResponseType" />
+
+    <xsd:element name="fault" type="mtomServiceFaultType" />
+
+    <xsd:complexType name="mtomUploadRequestType" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+        <xsd:sequence>
+            <xsd:element name="filename" type="string50Type" />
+            <xsd:element name="content" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="mtomUploadResponseType">
+        <xsd:sequence>
+            <xsd:element name="status" type="mtomUploadStatusType" minOccurs="1" maxOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="mtomUploadStatusType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="OK" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="mtomServiceFaultType">
+        <xsd:sequence>
+            <xsd:element name="code" type="xsd:string" minOccurs="1" />
+            <xsd:element name="message" type="xsd:string" minOccurs="1" />
+            <xsd:element name="source" type="xsd:string" minOccurs="0" />
+            <xsd:element name="additionalInformation" type="xsd:string" minOccurs="0" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="string50Type">
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="50" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

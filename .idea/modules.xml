@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mtom-test.iml" filepath="$PROJECT_DIR$/.idea/modules/mtom-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mtom-test_main.iml" filepath="$PROJECT_DIR$/.idea/modules/mtom-test_main.iml" group="mtom-test" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mtom-test_test.iml" filepath="$PROJECT_DIR$/.idea/modules/mtom-test_test.iml" group="mtom-test" />
+    </modules>
+  </component>
+</project>

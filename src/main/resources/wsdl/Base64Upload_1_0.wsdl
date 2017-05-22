@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:b64="http://www.pawmot.com/Base64Upload_1_0/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Base64Upload_1_0"
+	targetNamespace="http://www.pawmot.com/Base64Upload_1_0/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.pawmot.com/Base64Upload_1_0/">
+			<xsd:import schemaLocation="Base64Upload_1_0.xsd"
+						namespace="http://www.pawmot.com/Base64Upload_1_0/"/>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="base64UploadMsg">
+		<wsdl:part name="request" element="b64:base64UploadRequest" />
+	</wsdl:message>
+	<wsdl:message name="base64UploadMsgResponse">
+		<wsdl:part name="response" element="b64:base64UploadResponse" />
+	</wsdl:message>
+	<wsdl:message name="faultMsg">
+		<wsdl:part name="fault" element="b64:fault" />
+	</wsdl:message>
+
+	<wsdl:portType name="base64UploadPortType">
+		<wsdl:operation name="base64Upload">
+			<wsdl:input message="b64:base64UploadMsg" />
+			<wsdl:output message="b64:base64UploadMsgResponse" />
+			<wsdl:fault name="fault" message="b64:faultMsg" />
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+	<wsdl:binding name="base64UploadPortTypeBinding" type="b64:base64UploadPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="base64Upload">
+			<soap:operation soapAction="http://www.pawmot.com/Base64Upload_1_0/base64Upload" />
+			<wsdl:input>
+				<soap:body use="literal" parts="request" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" parts="response" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="Base64Upload_1_0">
+		<wsdl:port binding="b64:base64UploadPortTypeBinding" name="Base64Upload_1_0">
+			<soap:address location="http://www.pawmot.com/" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

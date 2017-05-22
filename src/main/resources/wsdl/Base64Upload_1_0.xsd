@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.pawmot.com/Base64Upload_1_0/"
+            targetNamespace="http://www.pawmot.com/Base64Upload_1_0/"
+            elementFormDefault="qualified" version="1.1">
+
+    <xsd:element name="base64UploadRequest" type="base64UploadRequestType" />
+    <xsd:element name="base64UploadResponse" type="base64UploadResponseType" />
+
+    <xsd:element name="fault" type="base64ServiceFaultType" />
+
+    <xsd:complexType name="base64UploadRequestType">
+        <xsd:sequence>
+            <xsd:element name="filename" type="string50Type" />
+            <xsd:element name="content" type="xsd:base64Binary" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="base64UploadResponseType">
+        <xsd:sequence>
+            <xsd:element name="status" type="base64UploadStatusType" minOccurs="1" maxOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="base64UploadStatusType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="OK" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="base64ServiceFaultType">
+        <xsd:sequence>
+            <xsd:element name="code" type="xsd:string" minOccurs="1" />
+            <xsd:element name="message" type="xsd:string" minOccurs="1" />
+            <xsd:element name="source" type="xsd:string" minOccurs="0" />
+            <xsd:element name="additionalInformation" type="xsd:string" minOccurs="0" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="string50Type">
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="50" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

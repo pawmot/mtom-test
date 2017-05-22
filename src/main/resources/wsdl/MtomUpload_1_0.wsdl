@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:mtom="http://www.pawmot.com/MtomUpload_1_0/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MtomUpload_1_0"
+	targetNamespace="http://www.pawmot.com/MtomUpload_1_0/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.pawmot.com/MtomUpload_1_0/">
+			<xsd:import schemaLocation="MtomUpload_1_0.xsd"
+						namespace="http://www.pawmot.com/MtomUpload_1_0/"/>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="mtomUploadMsg">
+		<wsdl:part name="request" element="mtom:mtomUploadRequest" />
+	</wsdl:message>
+	<wsdl:message name="mtomUploadMsgResponse">
+		<wsdl:part name="response" element="mtom:mtomUploadResponse" />
+	</wsdl:message>
+	<wsdl:message name="faultMsg">
+		<wsdl:part name="fault" element="mtom:fault" />
+	</wsdl:message>
+
+	<wsdl:portType name="mtomUploadPortType">
+		<wsdl:operation name="mtomUpload">
+			<wsdl:input message="mtom:mtomUploadMsg" />
+			<wsdl:output message="mtom:mtomUploadMsgResponse" />
+			<wsdl:fault name="fault" message="mtom:faultMsg" />
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+	<wsdl:binding name="mtomUploadPortTypeBinding" type="mtom:mtomUploadPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="mtomUpload">
+			<soap:operation soapAction="http://www.pawmot.com/MtomUpload_1_0/mtomUpload" />
+			<wsdl:input>
+				<soap:body use="literal" parts="request" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" parts="response" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="MtomUpload_1_0">
+		<wsdl:port binding="mtom:mtomUploadPortTypeBinding" name="MtomUpload_1_0">
+			<soap:address location="http://www.pawmot.com/" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>
